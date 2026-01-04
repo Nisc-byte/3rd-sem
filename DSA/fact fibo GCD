@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+
+int factorial(int n, int level = 0) {
+    for (int i = 0; i < level; i++) cout << "  ";
+    cout << "factorial(" << n << ")\n";
+
+    if (n == 0 || n == 1) {
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return 1\n";
+        return 1;
+    } else {
+        int result = n * factorial(n - 1, level + 1);
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return " << result << " for factorial(" << n << ")\n";
+        return result;
+    }
+}
+
+int fibonacci(int n, int level = 0) {
+    for (int i = 0; i < level; i++) cout << "  ";
+    cout << "fibonacci(" << n << ")\n";
+
+    if (n == 0) {
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return 0\n";
+        return 0;
+    } else if (n == 1) {
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return 1\n";
+        return 1;
+    } else {
+        int result = fibonacci(n - 1, level + 1) + fibonacci(n - 2, level + 1);
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return " << result << " for fibonacci(" << n << ")\n";
+        return result;
+    }
+}
+
+int gcd(int a, int b, int level = 0) {
+    for (int i = 0; i < level; i++) cout << "  ";
+    cout << "gcd(" << a << ", " << b << ")\n";
+
+    if (b == 0) {
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return " << a << "\n";
+        return a;
+    } else {
+        int result = gcd(b, a % b, level + 1);
+        for (int i = 0; i < level; i++) cout << "  ";
+        cout << "Return " << result << " for gcd(" << a << ", " << b << ")\n";
+        return result;
+    }
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n    Menu    \n";
+        cout << "\n Nischaya Maharjan\n";
+        cout << "1. Factorial\n";
+        cout << "2. Fibonacci\n";
+        cout << "3. GCD\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1: {
+                int n;
+                cout << "Enter a number for factorial: ";
+                cin >> n;
+                int fact = factorial(n);
+                cout << "\nFactorial of " << n << " is " << fact << endl;
+                break;
+            }
+            case 2: {
+                int n;
+                cout << "Enter the number of terms for Fibonacci: ";
+                cin >> n;
+                cout << "Fibonacci series with steps:\n";
+                for (int i = 0; i < n; i++) {
+                    cout << fibonacci(i) << " ";
+                }
+                cout << endl;
+                break;
+            }
+            case 3: {
+                int a, b;
+                cout << "Enter two numbers for GCD: ";
+                cin >> a >> b;
+                int result = gcd(a, b);
+                cout << "\nGCD of " << a << " and " << b << " is " << result << endl;
+                break;
+            }
+            case 4:
+                cout << "Exiting program...\n";
+                break;
+            default:
+                cout << "Invalid choice! Try again.\n";
+        }
+    } while(choice != 4);
+
+    return 0;
+}
