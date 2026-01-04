@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int step = 1;
+
+void towerOfHanoi(int n, char source, char auxiliary, char destination) {
+    if (n == 1) {
+        cout << step++ << ". Move disk 1 from " << source << " to " << destination << endl;
+        return;
+    }
+    towerOfHanoi(n - 1, source, destination, auxiliary);
+    cout << step++ << ". Move disk " << n << " from " << source << " to " << destination << endl;
+    towerOfHanoi(n - 1, auxiliary, source, destination);
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of blocks: ";
+    cin >> n;
+
+    towerOfHanoi(n, 'A', 'B', 'C');
+
+    return 0;
+}
